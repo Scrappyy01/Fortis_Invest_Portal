@@ -1,56 +1,117 @@
-import Navbar from '../components/Navbar';
+"use client";
+import { useState } from "react";
+import Navbar from "../components/Navbar";
+
+const teamMembers = [
+  {
+    name: "Anthony Kosseris",
+    image: "/Anthony__.png",
+    role: "Director and Investment Manager",
+    bio: "Anthony is a visionary entrepreneur and innovator with expertise in engineering, law, and property. He brings over 30 years of experience building and delivering successful ventures across technology, freight, logistics, manufacturing, and property.",
+    positions: [
+      "Fortis Fundamenta Pty Ltd – Director and Investment Manager",
+      "Load Link Australia Pty Ltd – Founder and Managing Director",
+      "Loadlink Logistics Pty Ltd – Founder and Managing Director",
+      "AJK Engines & Powertrains – Founder and Managing Director",
+    ],
+  },
+  {
+    name: "John Kosseris",
+    image: "/Dog.jpg",
+    role: "Director",
+    bio: "John is an experienced entrepreneur with over 55 years in property development, construction, and freight. He has successfully navigated multiple financial cycles and built enduring businesses.",
+    positions: ["Fortis Fundamenta Pty Ltd – Director"],
+  },
+  {
+    name: "Melissa Nedelkovska",
+    image: "/Dog.jpg",
+    role: "Board Member (Pending)",
+    bio: "May or may not be involved — confirmation pending.",
+    positions: [],
+  },
+  {
+    name: "Matthew Hunt",
+    image: "/Matt.JPG",
+    role: "Business Development Manager",
+    bio: "Over 30 years of experience as a prototype developer and business development manager. Held senior roles in multiple international companies.",
+    positions: [],
+  },
+  {
+    name: "Stuart Gale",
+    image: "/Stuart.PNG",
+    role: "Head of IT",
+    bio: "Veteran technology specialist with over 30 years in coding, web and application development. Founded and operated digital agencies since the early internet era. Delivered high-profile technology solutions across industries.",
+    positions: [],
+  },
+];
+
+function TeamCard({ member }) {
+  const [expanded, setExpanded] = useState(false);
+
+  return (
+    <div
+      className="relative group w-full sm:w-[16vw] h-[75vh] overflow-hidden cursor-pointer transition-all duration-300 flex items-center justify-center"
+      onClick={() => setExpanded(!expanded)}
+    >
+      <img
+        src={member.image}
+        alt={member.name}
+        className="absolute inset-0 w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110 grayscale group-hover:grayscale-0"
+      />
+      <button className="absolute inset-x-0 bottom-6 mx-auto bg-[#c9a961] text-black text-sm font-semibold px-5 py-2 rounded-full opacity-90 group-hover:opacity-100 transition z-20 w-fit">
+        {member.name}
+      </button>
+
+      {expanded && (
+        <div className="absolute inset-0 bg-[#1a1a1a] bg-opacity-95 p-6 overflow-y-auto z-30 flex flex-col justify-center text-left">
+          <h3 className="text-2xl font-bold text-[#c9a961] mb-3">
+            {member.name}
+          </h3>
+          <p className="text-base text-gray-400 italic mb-3">{member.role}</p>
+          <p className="text-base leading-relaxed text-gray-300 mb-4">
+            {member.bio}
+          </p>
+          {member.positions.length > 0 && (
+            <ul className="space-y-2">
+              {member.positions.map((pos, idx) => (
+                <li key={idx} className="flex items-start gap-2">
+                  <span className="text-[#c9a961] text-lg">•</span>
+                  <span className="text-gray-300 text-base">{pos}</span>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      )}
+    </div>
+  );
+}
 
 export default function TeamPage() {
   return (
-    <div className="min-h-screen bg-[#1a1a1a]">
+    <div className="relative min-h-screen bg-[#1a1a1a] overflow-hidden">
       <Navbar />
-      
-      <main className="container mx-auto px-8 pt-32 pb-16">
-        <div className="max-w-6xl mx-auto">
-          <h1 className="text-5xl md:text-6xl font-luxury font-bold text-white mb-16 tracking-tight">
-            Our Team
-          </h1>
-          
-          {/* Team Member Profile */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-20">
-            {/* Image - Left Side */}
-            <div className="relative overflow-hidden rounded-sm">
-              <img 
-                src="/Dog.jpg" 
-                alt="Team Member" 
-                className="w-full h-auto grayscale hover:grayscale-0 transition-all duration-500"
-              />
-            </div>
-            
-            {/* Text - Right Side */}
-            <div className="text-white space-y-6">
-              <h2 className="text-3xl md:text-4xl font-luxury font-bold text-[#c9a961] mb-4">
-                John Doe
-              </h2>
-              <p className="text-lg leading-relaxed text-gray-300">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-              </p>
-              <p className="text-lg leading-relaxed text-gray-300">
-                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.
-              </p>
-              
-              {/* Bullet Points */}
-              <ul className="space-y-3 pt-4">
-                <li className="flex items-start gap-3">
-                  <span className="text-[#c9a961] text-xl">•</span>
-                  <span className="text-gray-300">Over 15 years of experience in capital markets and strategic investment</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-[#c9a961] text-xl">•</span>
-                  <span className="text-gray-300">Led multiple billion-dollar infrastructure projects across global markets</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-[#c9a961] text-xl">•</span>
-                  <span className="text-gray-300">Specialized in emerging technologies and real-asset portfolio management</span>
-                </li>
-              </ul>
-            </div>
-          </div>
+      <section className="absolute top-0 left-0 w-full pt-[100px] pb-4 text-center z-40">
+        <h1
+          className="text-6xl md:text-8xl lg:text-6xl font-luxury font-bold tracking-tight text-[#c9a961] mb-2 transition-all duration-1000 delay-500 opacity-100 translate-y-0"
+          style={{
+            textShadow:
+              "rgba(0, 0, 0, 1) 0px 0px 40px, rgba(0, 0, 0, 1) 0px 6px 20px, rgba(201, 169, 97, 0.6) 0px 0px 120px",
+            animation: "text-glow 4s ease-in-out infinite",
+          }}
+        >
+          Our Team
+        </h1>
+
+        {/* Linha de luz abaixo do título */}
+        <div className="mx-auto w-[50%] h-[2px] bg-gradient-to-r from-transparent via-[#c9a961] to-transparent blur-md opacity-90" />
+      </section>
+
+      <main className="pt-[200px] px-6 flex justify-center items-start w-full overflow-hidden">
+        <div className="flex flex-wrap justify-center gap-0">
+          {teamMembers.map((member, idx) => (
+            <TeamCard key={idx} member={member} />
+          ))}
         </div>
       </main>
     </div>
