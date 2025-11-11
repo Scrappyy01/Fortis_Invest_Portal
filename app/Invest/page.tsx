@@ -77,7 +77,13 @@ export default function InvestPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#1a1a1a]">
+    <div className="relative min-h-screen bg-[#1a1a1a]">
+      {/* Golden Grid Background */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#c9a961_1px,transparent_1px),linear-gradient(to_bottom,#c9a961_1px,transparent_1px)] bg-[size:4rem_4rem] z-0" />
+      
+      {/* Content overlay with dark background to dim grid */}
+      <div className="relative z-10 bg-[#1a1a1a]/95">
+      
       {/* Loading Screen */}
       <LoadingScreen />
       
@@ -282,6 +288,7 @@ export default function InvestPage() {
           </div>
         </div>
       </main>
+      </div>
     </div>
   );
 }

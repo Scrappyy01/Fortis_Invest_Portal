@@ -11,6 +11,7 @@ export default function Home() {
   const [slide4Visible, setSlide4Visible] = useState(false);
   const [slide2Visible, setSlide2Visible] = useState(false);
   const [slide3Visible, setSlide3Visible] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const slide4Ref = useRef<HTMLElement>(null);
   const slide2Ref = useRef<HTMLElement>(null);
@@ -19,6 +20,16 @@ export default function Home() {
   const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const lastScrollTimeRef = useRef(0);
   const rafRef = useRef<number | null>(null);
+
+  // Check for mobile screen size
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   // Throttled scroll handler - prevents excessive re-renders
   useEffect(() => {
@@ -546,26 +557,42 @@ export default function Home() {
         {/* CSS-generated Stars Background */}
         <div className="absolute inset-0 bg-stars" />
         
-        {/* AuroraGold overlay with optimized settings */}
-        <div className="absolute inset-0" style={{ width: '100%', height: '100%' }}>
-          <AuroraGold 
-            colorStops={['#c9a961', '#d4b876', '#c9a961']}
-            amplitude={0.5}
-            blend={1}
-            speed={0.3}
-          />
-        </div>
+        {/* AuroraGold overlay - only on desktop */}
+        {!isMobile && (
+          <div className="absolute inset-0" style={{ width: '100%', height: '100%' }}>
+            <AuroraGold 
+              colorStops={['#c9a961', '#d4b876', '#c9a961']}
+              amplitude={0.5}
+              blend={1}
+              speed={0.3}
+            />
+          </div>
+        )}
         
-        {/* Gold-lit Skyline Background Image */}
-        <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{
-            backgroundImage: 'url(/GoldCoast3.png)',
-          }}
-        >
-          {/* Dark overlay to subtly darken the image */}
-          <div className="absolute inset-0" style={{background: 'rgba(10, 10, 20, 0.45)'}} />
-        </div>
+        {/* Mobile Gold Background - only on mobile */}
+        {isMobile && (
+          <div 
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+            style={{
+              backgroundImage: 'url(/Mobile_Gold_Background4.png)',
+            }}
+          >
+            <div className="absolute inset-0" style={{background: 'rgba(10, 10, 20, 0.45)'}} />
+          </div>
+        )}
+        
+        {/* Gold-lit Skyline Background Image - only on desktop */}
+        {!isMobile && (
+          <div 
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+            style={{
+              backgroundImage: 'url(/GoldCoast4.png)',
+            }}
+          >
+            {/* Dark overlay to subtly darken the image */}
+            <div className="absolute inset-0" style={{background: 'rgba(10, 10, 20, 0.45)'}} />
+          </div>
+        )}
         
         {/* Vignette for premium feel */}
         <div 

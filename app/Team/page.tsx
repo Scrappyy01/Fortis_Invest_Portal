@@ -98,6 +98,11 @@ function TeamCard({ member }: { member: TeamMember }) {
 export default function TeamPage() {
   return (
     <div className="relative min-h-screen bg-[#1a1a1a] overflow-hidden">
+      {/* Golden Grid Background */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#c9a961_1px,transparent_1px),linear-gradient(to_bottom,#c9a961_1px,transparent_1px)] bg-[size:4rem_4rem] z-0" />
+      
+      {/* Content overlay with dark background to dim grid */}
+      <div className="relative z-10 bg-[#1a1a1a]/95">
       <Navbar />
       <section className="absolute top-0 left-0 w-full pt-[100px] pb-4 text-center z-40">
         <h1
@@ -122,6 +127,7 @@ export default function TeamPage() {
           ))}
         </div>
       </main>
+      </div>
     </div>
   );
 }
