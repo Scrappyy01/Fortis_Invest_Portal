@@ -318,26 +318,11 @@ export default function Home() {
 
       {/* Slide 2 — RESPECTING OUR PAST */}
       <section ref={slide2Ref} id="slide2" className="h-screen flex items-center justify-center relative overflow-hidden">
-        {/* Left Side - Past (Old Semi Truck with sepia) */}
+        {/* Full Background Image - Sunset Trucks */}
         <div 
-          className="absolute left-0 top-0 w-1/2 h-full overflow-hidden"
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: 'url(/OldSemiTruck.jpg)',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            filter: 'grayscale(100%) sepia(60%) contrast(1.2)',
-            opacity: 0.8,
-          }}
-        />
-        
-        {/* Right Side - Present (Modern Powertrain) */}
-        <div 
-          className="absolute right-0 top-0 w-1/2 h-full overflow-hidden"
-          style={{
-            backgroundImage: 'url(/hd_powertrain.png)',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            filter: 'grayscale(30%) contrast(1.1)',
+            backgroundImage: 'url(/Sunset_Trucks.png)',
           }}
         />
         
@@ -355,14 +340,6 @@ export default function Home() {
           style={{
             backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 400 400\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noiseFilter\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.9\' numOctaves=\'4\' /%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noiseFilter)\' /%3E%3C/svg%3E")',
             backgroundRepeat: 'repeat',
-          }}
-        />
-        
-        {/* Gradient Divider Line */}
-        <div 
-          className="absolute top-0 left-1/2 h-full w-1 -translate-x-1/2 z-20 opacity-40"
-          style={{
-            background: 'linear-gradient(to bottom, transparent, #c9a961, transparent)',
           }}
         />
         
@@ -586,7 +563,7 @@ export default function Home() {
           <div 
             className="absolute inset-0 bg-cover bg-center bg-no-repeat"
             style={{
-              backgroundImage: 'url(/GoldCoast4.png)',
+              backgroundImage: 'url(/GoldCoast3.png)',
             }}
           >
             {/* Dark overlay to subtly darken the image */}
