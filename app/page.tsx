@@ -201,7 +201,7 @@ export default function Home() {
           
           {/* Mobile Hamburger Menu Button */}
           <button
-            className="md:hidden flex flex-col gap-1.5 cursor-pointer"
+            className="md:hidden flex flex-col gap-1.5 cursor-pointer pl-3"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle mobile menu"
           >

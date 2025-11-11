@@ -12,6 +12,9 @@ export default function InvestPage() {
     message: '',
   });
 
+  // Loading state
+  const [isLoaded, setIsLoaded] = useState(false);
+
   // Visibility states for fade-down animations
   const [heroVisible, setHeroVisible] = useState(false);
   const [cardsVisible, setCardsVisible] = useState(false);
@@ -25,8 +28,19 @@ export default function InvestPage() {
   const contactRef = useRef<HTMLDivElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
 
-  // Intersection Observer for fade-down animations
+  // Wait for loading screen to finish before starting animations
   useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoaded(true);
+    }, 800); // Match LoadingScreen duration
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Intersection Observer for fade-down animations (only after loading)
+  useEffect(() => {
+    if (!isLoaded) return;
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -47,7 +61,7 @@ export default function InvestPage() {
     });
 
     return () => observer.disconnect();
-  }, []);
+  }, [isLoaded]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();

@@ -1,6 +1,40 @@
+'use client';
+
+import { useState, useRef, useEffect } from 'react';
 import Navbar from "../components/Navbar";
 
 export default function ProjectsPage() {
+  // Visibility states for fade-down animations
+  const [headlineVisible, setHeadlineVisible] = useState(false);
+  const [currentProjectsVisible, setCurrentProjectsVisible] = useState(false);
+  const [pastProjectsVisible, setPastProjectsVisible] = useState(false);
+
+  const headlineRef = useRef<HTMLElement>(null);
+  const currentProjectsRef = useRef<HTMLElement>(null);
+  const pastProjectsRef = useRef<HTMLElement>(null);
+
+  // Intersection Observer for fade-down animations
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            if (entry.target === headlineRef.current) setHeadlineVisible(true);
+            if (entry.target === currentProjectsRef.current) setCurrentProjectsVisible(true);
+            if (entry.target === pastProjectsRef.current) setPastProjectsVisible(true);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    [headlineRef, currentProjectsRef, pastProjectsRef].forEach((ref) => {
+      if (ref.current) observer.observe(ref.current);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div className="relative min-h-screen">
       {/* Fundo com grid dourado */}
@@ -12,9 +46,9 @@ export default function ProjectsPage() {
 
         <main className="container mx-auto px-8 pt-32 pb-16 space-y-24">
           {/* Headline */}
-          <section className="max-w-6xl mx-auto text-center pt-8 pb-4">
+          <section ref={headlineRef} className={`max-w-6xl mx-auto text-center pt-8 pb-4 transition-all duration-1000 ${headlineVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-12'}`}>
             <h1
-              className="text-6xl md:text-8xl lg:text-7xl font-luxury font-bold tracking-tight text-[#c9a961] mb-2 transition-all duration-1000 delay-500 opacity-100 translate-y-0"
+              className="text-6xl md:text-8xl lg:text-7xl font-luxury font-bold tracking-tight text-[#c9a961] mb-2"
               style={{
                 textShadow:
                   "rgba(0, 0, 0, 1) 0px 0px 40px, rgba(0, 0, 0, 1) 0px 6px 20px, rgba(201, 169, 97, 0.6) 0px 0px 120px",
@@ -25,7 +59,7 @@ export default function ProjectsPage() {
             </h1>
 
             <h1
-              className="text-5xl md:text-7xl lg:text-6xl font-luxury font-bold tracking-tight text-[#c9a961] mb-4 transition-all duration-1000 delay-500 opacity-100 translate-y-0"
+              className="text-5xl md:text-7xl lg:text-6xl font-luxury font-bold tracking-tight text-[#c9a961] mb-4"
               style={{
                 textShadow:
                   "rgba(0, 0, 0, 1) 0px 0px 40px, rgba(0, 0, 0, 1) 0px 6px 20px, rgba(201, 169, 97, 0.6) 0px 0px 120px",
@@ -39,7 +73,7 @@ export default function ProjectsPage() {
           </section>
 
           {/* Current Projects */}
-          <section className="max-w-6xl mx-auto space-y-8">
+          <section ref={currentProjectsRef} className={`max-w-6xl mx-auto space-y-8 transition-all duration-1000 delay-200 ${currentProjectsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-12'}`}>
             <h1 className="text-3xl md:text-4xl lg:text-4xl font-semibold text-[#ffffff] tracking-wide mb-2 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] mb-10">
               Current Projects
             </h1>
@@ -94,7 +128,7 @@ export default function ProjectsPage() {
           </section>
 
           {/* Past Project Experience */}
-          <section className="max-w-6xl mx-auto space-y-8">
+          <section ref={pastProjectsRef} className={`max-w-6xl mx-auto space-y-8 transition-all duration-1000 delay-400 ${pastProjectsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-12'}`}>
             <h1 className="text-3xl md:text-4xl lg:text-4xl font-semibold text-[#ffffff] tracking-wide mb-2 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] mb-10">
               Past Project Experience
             </h1>
