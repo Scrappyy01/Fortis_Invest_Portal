@@ -6,7 +6,6 @@ import AuroraGold from './components/AuroraGold';
 import LoadingScreen from './components/LoadingScreen';
 
 export default function Home() {
-  const [scrollY, setScrollY] = useState(0);
   const [activeSlide, setActiveSlide] = useState(1);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [slide4Visible, setSlide4Visible] = useState(false);
@@ -18,47 +17,54 @@ export default function Home() {
   const slide3Ref = useRef<HTMLElement>(null);
   const isScrollingRef = useRef(false);
   const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const lastScrollTimeRef = useRef(0);
+  const rafRef = useRef<number | null>(null);
 
+  // Throttled scroll handler - prevents excessive re-renders
   useEffect(() => {
     const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      setScrollY(currentScrollY);
+      const now = Date.now();
+      // Throttle to run max every 100ms instead of 60+ times per second
+      if (now - lastScrollTimeRef.current < 100) {
+        return;
+      }
+      lastScrollTimeRef.current = now;
 
-      // Calculate which slide is currently in view
+      const currentScrollY = window.scrollY;
       const windowHeight = window.innerHeight;
       const slideNumber = Math.round(currentScrollY / windowHeight) + 1;
       setActiveSlide(Math.min(Math.max(slideNumber, 1), 5));
       
       // Check if slide 2 is in view
-      if (slide2Ref.current) {
+      if (slide2Ref.current && !slide2Visible) {
         const rect = slide2Ref.current.getBoundingClientRect();
         const isInView = rect.top < windowHeight * 0.75 && rect.bottom > 0;
-        if (isInView && !slide2Visible) {
+        if (isInView) {
           setSlide2Visible(true);
         }
       }
 
       // Check if slide 3 is in view
-      if (slide3Ref.current) {
+      if (slide3Ref.current && !slide3Visible) {
         const rect = slide3Ref.current.getBoundingClientRect();
         const isInView = rect.top < windowHeight * 0.75 && rect.bottom > 0;
-        if (isInView && !slide3Visible) {
+        if (isInView) {
           setSlide3Visible(true);
         }
       }
       
       // Check if slide 4 is in view
-      if (slide4Ref.current) {
+      if (slide4Ref.current && !slide4Visible) {
         const rect = slide4Ref.current.getBoundingClientRect();
         const isInView = rect.top < windowHeight * 0.75 && rect.bottom > 0;
-        if (isInView && !slide4Visible) {
+        if (isInView) {
           setSlide4Visible(true);
         }
       }
     };
 
     handleScroll(); // Call once on mount
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, [slide4Visible, slide2Visible, slide3Visible]);
 
@@ -162,6 +168,18 @@ export default function Home() {
     return () => document.removeEventListener('visibilitychange', handleVisibilityChange);
   }, [activeSlide]);
 
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {
+      if (rafRef.current) {
+        cancelAnimationFrame(rafRef.current);
+      }
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+      }
+    };
+  }, []);
+
   return (
     <div className="relative bg-[#1a1a1a]">
       {/* Loading Screen */}
@@ -264,22 +282,22 @@ export default function Home() {
           muted
           playsInline
           aria-hidden="true"
-          preload="metadata"
+          preload="none"
         />
         <div className="absolute inset-0 bg-black/60" />
         {/* Removed grid overlay for a cleaner look */}
         <div className="text-center text-white z-10 px-8 max-w-5xl">
-          <h1 className="text-7xl md:text-8xl font-luxury font-bold mb-6 tracking-tight leading-tight" style={{
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-luxury font-bold mb-4 md:mb-6 tracking-tight leading-tight" style={{
             textShadow: '0 0 30px rgba(0,0,0,0.8), 0 4px 15px rgba(0,0,0,0.9)'
           }}>
             INNOVATING FOR<br />TOMORROW
           </h1>
-          <p className="text-3xl md:text-4xl font-light mb-4 text-white" style={{
+          <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light mb-3 md:mb-4 text-white" style={{
             textShadow: '0 0 20px rgba(0,0,0,0.8), 0 2px 10px rgba(0,0,0,0.9)'
           }}>
             Engineering the Future of Capital.
           </p>
-          <p className="text-lg md:text-xl text-[#c9a961] font-light tracking-wide" style={{
+          <p className="text-base sm:text-lg md:text-xl text-[#c9a961] font-light tracking-wide" style={{
             textShadow: '0 0 15px rgba(0,0,0,0.8), 0 2px 8px rgba(0,0,0,0.9)'
           }}>
             Innovation that shapes tomorrow's world.
@@ -339,17 +357,17 @@ export default function Home() {
         
         {/* Content */}
         <div className="text-center text-white z-10 px-8 max-w-5xl relative">
-          <h2 className={`text-6xl md:text-7xl font-luxury font-bold mb-6 tracking-tight transition-all duration-1000 ${slide2Visible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-12'} delay-0`} style={{
+          <h2 className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-luxury font-bold mb-4 md:mb-6 tracking-tight transition-all duration-1000 ${slide2Visible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-12'} delay-0`} style={{
             textShadow: '0 0 30px rgba(0, 0, 0, 0.8), 0 4px 15px rgba(0, 0, 0, 0.9)'
           }}>
             RESPECTING OUR PAST
           </h2>
-          <p className={`text-3xl md:text-4xl font-light mb-4 transition-all duration-1000 ${slide2Visible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-12'} delay-200`} style={{
+          <p className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light mb-3 md:mb-4 transition-all duration-1000 ${slide2Visible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-12'} delay-200`} style={{
             textShadow: '0 0 20px rgba(0, 0, 0, 0.8), 0 2px 10px rgba(0, 0, 0, 0.9)'
           }}>
             Built on Integrity. Strengthened by Experience.
           </p>
-          <p className={`text-lg md:text-xl text-gray-200 font-light max-w-3xl mx-auto leading-relaxed transition-all duration-1000 ${slide2Visible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-12'} delay-400`} style={{
+          <p className={`text-base sm:text-lg md:text-xl text-gray-200 font-light max-w-3xl mx-auto leading-relaxed transition-all duration-1000 ${slide2Visible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-12'} delay-400`} style={{
             textShadow: '0 0 15px rgba(0, 0, 0, 0.8), 0 2px 8px rgba(0, 0, 0, 0.9)'
           }}>
             From engineering and technology to capital and development — a legacy of execution.
@@ -377,17 +395,17 @@ export default function Home() {
           <div className="absolute inset-0 bg-[linear-gradient(45deg,#c9a961_1px,transparent_1px),linear-gradient(-45deg,#c9a961_1px,transparent_1px)] bg-[size:3rem_3rem]"></div>
         </div>
         <div className={`text-center text-white z-10 px-8 max-w-5xl transition-all duration-1000 delay-300 ${slide3Visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
-          <h2 className="text-6xl md:text-7xl font-luxury font-bold mb-6 tracking-tight" style={{
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-luxury font-bold mb-4 md:mb-6 tracking-tight" style={{
             textShadow: '0 0 30px rgba(0,0,0,0.8), 0 4px 15px rgba(0,0,0,0.9)'
           }}>
             DELIVERING THE FUTURE<br />OF POSSIBILITY
           </h2>
-          <p className="text-3xl md:text-4xl font-light mb-4" style={{
+          <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light mb-3 md:mb-4" style={{
             textShadow: '0 0 20px rgba(0,0,0,0.8), 0 2px 10px rgba(0,0,0,0.9)'
           }}>
             Where Vision Becomes Reality.
           </p>
-          <p className="text-lg md:text-xl text-[#c9a961] font-light tracking-wide" style={{
+          <p className="text-base sm:text-lg md:text-xl text-[#c9a961] font-light tracking-wide" style={{
             textShadow: '0 0 15px rgba(0,0,0,0.8), 0 2px 8px rgba(0,0,0,0.9)'
           }}>
             Real-asset investments powering tomorrow's economy.
@@ -492,7 +510,7 @@ export default function Home() {
             <img 
               src="/fortisfundamenta_logo_1.png" 
               alt="Fortis Fundamenta" 
-              className="h-28 w-auto mx-auto relative z-10"
+              className="h-16 sm:h-20 md:h-24 lg:h-28 w-auto mx-auto relative z-10"
               style={{
                 filter: 'drop-shadow(0 0 30px rgba(201, 169, 97, 0.4))',
                 animation: slide4Visible ? 'subtle-pulse 3s ease-in-out infinite' : 'none'
@@ -501,7 +519,7 @@ export default function Home() {
           </div>
           
           {/* Heading with letter reveal */}
-          <h2 className={`text-6xl md:text-7xl font-luxury font-bold mb-6 tracking-tight text-[#c9a961] transition-all duration-1000 delay-500 ${slide4Visible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-8'}`} 
+          <h2 className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-luxury font-bold mb-4 md:mb-6 tracking-tight text-[#c9a961] transition-all duration-1000 delay-500 ${slide4Visible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-8'}`} 
             style={{
               textShadow: '0 0 30px rgba(0,0,0,0.8), 0 4px 15px rgba(0,0,0,0.9), 0 0 60px rgba(201, 169, 97, 0.3)',
               animation: slide4Visible ? 'text-glow 4s ease-in-out infinite' : 'none'
@@ -511,10 +529,10 @@ export default function Home() {
           </h2>
           
           {/* Decorative line */}
-          <div className={`w-32 h-[2px] bg-gradient-to-r from-transparent via-[#c9a961] to-transparent mx-auto mb-6 transition-all duration-1000 delay-700 ${slide4Visible ? 'opacity-100 scale-x-100' : 'opacity-0 scale-x-0'}`} />
+          <div className={`w-32 h-[2px] bg-gradient-to-r from-transparent via-[#c9a961] to-transparent mx-auto mb-4 md:mb-6 transition-all duration-1000 delay-700 ${slide4Visible ? 'opacity-100 scale-x-100' : 'opacity-0 scale-x-0'}`} />
           
           {/* Subtitle with fade */}
-          <p className={`text-3xl md:text-4xl font-light mb-4 transition-all duration-1000 delay-900 ${slide4Visible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-8'}`} style={{
+          <p className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light mb-3 md:mb-4 transition-all duration-1000 delay-900 ${slide4Visible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-8'}`} style={{
             textShadow: '0 0 20px rgba(0,0,0,0.8), 0 2px 10px rgba(0,0,0,0.9)'
           }}>
             Structuring visionary excellence across property and technology.
@@ -557,23 +575,23 @@ export default function Home() {
           }}
         />
         
-        <div className="text-center text-white z-10 px-8 max-w-5xl relative">
-          <h2 className="text-6xl md:text-7xl font-luxury font-bold mb-6 tracking-tight" style={{
+        <div className="text-center text-white z-10 px-4 sm:px-6 md:px-8 max-w-5xl relative">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-luxury font-bold mb-4 md:mb-6 tracking-tight" style={{
             textShadow: '0 0 30px rgba(0,0,0,0.8), 0 4px 15px rgba(0,0,0,0.9)'
           }}>
             INVEST IN EXCELLENCE
           </h2>
-          <p className="text-3xl md:text-4xl font-light mb-4" style={{
+          <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light mb-3 md:mb-4" style={{
             textShadow: '0 0 20px rgba(0,0,0,0.8), 0 2px 10px rgba(0,0,0,0.9)'
           }}>
             A Managed Fund for Sophisticated Investors.
           </p>
-          <p className="text-lg md:text-xl text-gray-200 font-light mb-12 max-w-3xl mx-auto leading-relaxed" style={{
+          <p className="text-base sm:text-lg md:text-xl text-gray-200 font-light mb-8 md:mb-12 max-w-3xl mx-auto leading-relaxed px-2" style={{
             textShadow: '0 0 15px rgba(0,0,0,0.8), 0 2px 8px rgba(0,0,0,0.9)'
           }}>
             Partner with Fortis Fundamenta and invest in the foundations of the future.
           </p>
-          <button className="bg-[#c9a961] hover:bg-[#d4b876] text-[#1a1a1a] font-semibold text-lg px-12 py-4 rounded-sm transition-all duration-300 tracking-wide shadow-2xl hover:shadow-[#c9a961]/60 hover:scale-105">
+          <button className="bg-[#c9a961] hover:bg-[#d4b876] text-[#1a1a1a] font-semibold text-sm sm:text-base md:text-lg px-6 sm:px-8 md:px-12 py-3 md:py-4 rounded-sm transition-all duration-300 tracking-wide shadow-2xl hover:shadow-[#c9a961]/60 hover:scale-105 w-full sm:w-auto max-w-sm">
             APPLY FOR INVESTOR ACCESS
           </button>
         </div>

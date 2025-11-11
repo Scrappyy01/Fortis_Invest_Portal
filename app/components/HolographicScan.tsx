@@ -8,13 +8,16 @@ export default function HolographicScan() {
   const [scanComplete, setScanComplete] = useState(false);
   const [revealedPoints, setRevealedPoints] = useState<Set<number>>(new Set());
   const [windowHeight, setWindowHeight] = useState(0);
+  const [windowWidth, setWindowWidth] = useState(0);
 
-  // Get window height on client side only
+  // Get window height and width on client side only
   useEffect(() => {
     setWindowHeight(window.innerHeight);
+    setWindowWidth(window.innerWidth);
     
     const handleResize = () => {
       setWindowHeight(window.innerHeight);
+      setWindowWidth(window.innerWidth);
     };
     
     window.addEventListener('resize', handleResize);
@@ -24,6 +27,9 @@ export default function HolographicScan() {
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
+    
+    // Don't render data points on mobile view (< 768px)
+    if (windowWidth < 768) return;
 
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
@@ -46,7 +52,8 @@ export default function HolographicScan() {
       { x: 0.70, y: 0.85, label: 'CAPACITY', value: '∞' },
     ];
 
-    // Animation loop
+    // Animation loop - optimized with requestAnimationFrame ID tracking
+    let animationFrameId: number;
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -109,15 +116,18 @@ export default function HolographicScan() {
         }
       });
 
-      requestAnimationFrame(animate);
+      animationFrameId = requestAnimationFrame(animate);
     };
 
     animate();
 
     return () => {
       window.removeEventListener('resize', resizeCanvas);
+      if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId);
+      }
     };
-  }, [scanPosition, revealedPoints]);
+  }, [scanPosition, revealedPoints, windowWidth]);
 
   // Update scan position - stop after one complete scan
   useEffect(() => {
@@ -139,15 +149,15 @@ export default function HolographicScan() {
 
   return (
     <>
-      {/* Canvas for data overlays */}
+      {/* Canvas for data overlays - hidden on mobile */}
       <canvas
         ref={canvasRef}
-        className="absolute inset-0 pointer-events-none z-20"
+        className="absolute inset-0 pointer-events-none z-20 hidden md:block"
         style={{ opacity: 0.9 }}
       />
       
-  {/* Scanning beam with holographic glow - changed to neon blue */}
-      {!scanComplete && (
+  {/* Scanning beam with holographic glow - hidden on mobile */}
+      {!scanComplete && windowWidth >= 768 && (
         <>
           <div
             className="absolute left-0 right-0 h-[3px] pointer-events-none z-30"
@@ -171,8 +181,8 @@ export default function HolographicScan() {
         </>
       )}
       
-  {/* Grid overlay that pulses with scan - changed to neon blue */}
-      {!scanComplete && windowHeight > 0 && (
+  {/* Grid overlay that pulses with scan - hidden on mobile */}
+      {!scanComplete && windowHeight > 0 && windowWidth >= 768 && (
         <div
           className="absolute inset-0 pointer-events-none z-10"
           style={{
