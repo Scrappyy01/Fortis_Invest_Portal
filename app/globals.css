@@ -384,3 +384,43 @@ body {
 .font-custom {
   font-family: 'UnicaOne-Regular', sans-serif;
 }
+
+/* Slide 1 Staggered Fade-In Animations */
+@keyframes fade-in-slide-1-heading {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in-slide-1-subtitle {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in-slide-1-description {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.slide1-heading {
+  animation: fade-in-slide-1-heading 1s ease-out forwards;
+}
+
+.slide1-subtitle {
+  animation: fade-in-slide-1-subtitle 1s ease-out forwards 0.2s;
+}
+
+.slide1-description {
+  animation: fade-in-slide-1-description 1s ease-out forwards 0.4s;
+}

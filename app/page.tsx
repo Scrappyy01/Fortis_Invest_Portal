@@ -8,11 +8,14 @@ import LoadingScreen from './components/LoadingScreen';
 export default function Home() {
   const [activeSlide, setActiveSlide] = useState(1);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [slide1Visible, setSlide1Visible] = useState(false);
   const [slide4Visible, setSlide4Visible] = useState(false);
   const [slide2Visible, setSlide2Visible] = useState(false);
   const [slide3Visible, setSlide3Visible] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [isLoadingComplete, setIsLoadingComplete] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const slide1Ref = useRef<HTMLElement>(null);
   const slide4Ref = useRef<HTMLElement>(null);
   const slide2Ref = useRef<HTMLElement>(null);
   const slide3Ref = useRef<HTMLElement>(null);
@@ -20,6 +23,14 @@ export default function Home() {
   const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const lastScrollTimeRef = useRef(0);
   const rafRef = useRef<number | null>(null);
+
+  // Set loading complete after 800ms to match LoadingScreen
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoadingComplete(true);
+    }, 800);
+    return () => clearTimeout(timer);
+  }, []);
 
   // Check for mobile screen size
   useEffect(() => {
@@ -45,6 +56,15 @@ export default function Home() {
       const windowHeight = window.innerHeight;
       const slideNumber = Math.round(currentScrollY / windowHeight) + 1;
       setActiveSlide(Math.min(Math.max(slideNumber, 1), 5));
+      
+      // Check if slide 1 is in view
+      if (slide1Ref.current && !slide1Visible) {
+        const rect = slide1Ref.current.getBoundingClientRect();
+        const isInView = rect.top < windowHeight * 0.75 && rect.bottom > 0;
+        if (isInView) {
+          setSlide1Visible(true);
+        }
+      }
       
       // Check if slide 2 is in view
       if (slide2Ref.current && !slide2Visible) {
@@ -77,7 +97,7 @@ export default function Home() {
     handleScroll(); // Call once on mount
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [slide4Visible, slide2Visible, slide3Visible]);
+  }, [slide1Visible, slide4Visible, slide2Visible, slide3Visible]);
 
   // Smooth snap scrolling on wheel event
   useEffect(() => {
@@ -284,7 +304,7 @@ export default function Home() {
       </div>
 
       {/* Slide 1 — INNOVATING FOR TOMORROW */}
-      <section id="slide1" className="h-screen flex items-center justify-center relative overflow-hidden">
+      <section ref={slide1Ref} id="slide1" className="h-screen flex items-center justify-center relative overflow-hidden">
         <video
           ref={videoRef}
           className="absolute inset-0 w-full h-full object-cover"
@@ -298,17 +318,17 @@ export default function Home() {
         <div className="absolute inset-0 bg-black/60" />
         {/* Removed grid overlay for a cleaner look */}
         <div className="text-center text-white z-10 px-8 max-w-5xl">
-          <h1 className="text-4xl font-custom sm:text-5xl md:text-6xl lg:text-7xl xl:text-9xl font-luxury font-bold mb-4 md:mb-6 tracking-tight leading-tight" style={{
+          <h1 className={`opacity-0 text-4xl font-custom sm:text-5xl md:text-6xl lg:text-7xl xl:text-9xl font-luxury font-bold mb-4 md:mb-6 tracking-tight leading-tight ${slide1Visible && isLoadingComplete ? 'slide1-heading' : ''}`} style={{
             textShadow: '0 0 30px rgba(0,0,0,0.8), 0 4px 15px rgba(0,0,0,0.9)'
           }}>
             <span style={{ color: '#c9a961' }}>INNOVATING</span> FOR<br />TOMORROW
           </h1>
-          <p className="text-xl sm:text-2xl md:text-3xl lg:text-5xl font-light mb-3 md:mb-4 text-white" style={{
+          <p className={`opacity-0 text-xl sm:text-2xl md:text-3xl lg:text-5xl font-light mb-3 md:mb-4 text-white ${slide1Visible && isLoadingComplete ? 'slide1-subtitle' : ''}`} style={{
             textShadow: '0 0 20px rgba(0,0,0,0.8), 0 2px 10px rgba(0,0,0,0.9)'
           }}>
             Engineering the Future of Capital.
           </p>
-          <p className="text-base sm:text-lg md:text-3xl text-[#c9a961] font-light tracking-wide" style={{
+          <p className={`opacity-0 text-base sm:text-lg md:text-3xl text-[#c9a961] font-light tracking-wide ${slide1Visible && isLoadingComplete ? 'slide1-description' : ''}`} style={{
             textShadow: '0 0 15px rgba(0,0,0,0.8), 0 2px 8px rgba(0,0,0,0.9)'
           }}>
             Innovation that shapes tomorrow's world.
