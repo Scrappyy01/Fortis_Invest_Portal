@@ -24,7 +24,7 @@ const teamMembers = [
   },
   {
     name: "Melissa Nedelkovska",
-    image: "/Dog.jpg",
+    image: "/Melissa.jpg",
     role: "Board Member (Pending)",
     bio: "May or may not be involved — confirmation pending.",
     positions: [],
@@ -50,12 +50,13 @@ function TeamCard({ member }) {
 
   return (
     <div
-      className="relative group w-full sm:w-[16vw] h-[75vh] overflow-hidden cursor-pointer transition-all duration-300 flex items-center justify-center"
+      className="relative group w-screen sm:w-[300px] h-[100vh] sm:h-[600px] md:h-[650px] lg:h-[700px] flex-shrink-0 overflow-hidden cursor-pointer transition-all duration-300 flex items-center justify-center scroll-snap-align-start"
       onClick={() => setExpanded(!expanded)}
     >
       <img
         src={member.image}
         alt={member.name}
+        loading="lazy"
         className="absolute inset-0 w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110 grayscale group-hover:grayscale-0"
       />
       <button className="absolute inset-x-0 bottom-6 mx-auto bg-[#c9a961] text-black text-sm font-semibold px-5 py-2 rounded-full opacity-90 group-hover:opacity-100 transition z-20 w-fit">
@@ -89,26 +90,25 @@ function TeamCard({ member }) {
 
 export default function TeamPage() {
   return (
-    <div className="relative min-h-screen bg-[#1a1a1a] overflow-hidden">
+    <div className="relative min-h-screen bg-[#1a1a1a] overflow-x-hidden">
       <Navbar />
       <section className="absolute top-0 left-0 w-full pt-[100px] pb-4 text-center z-40">
         <h1
-          className="text-6xl md:text-8xl lg:text-6xl font-luxury font-bold tracking-tight text-[#c9a961] mb-2 transition-all duration-1000 delay-500 opacity-100 translate-y-0"
+          className="text-4xl md:text-6xl lg:text-5xl font-bold tracking-tight text-[#c9a961] mb-2 transition-all duration-1000 delay-500 opacity-100 translate-y-0"
           style={{
+            fontFamily: "'Unica One', sans-serif",
             textShadow:
               "rgba(0, 0, 0, 1) 0px 0px 40px, rgba(0, 0, 0, 1) 0px 6px 20px, rgba(201, 169, 97, 0.6) 0px 0px 120px",
             animation: "text-glow 4s ease-in-out infinite",
           }}
         >
-          Our Team
+          OUR TEAM
         </h1>
-
-        {/* Linha de luz abaixo do título */}
         <div className="mx-auto w-[50%] h-[2px] bg-gradient-to-r from-transparent via-[#c9a961] to-transparent blur-md opacity-90" />
       </section>
 
-      <main className="pt-[200px] px-6 flex justify-center items-start w-full overflow-hidden">
-        <div className="flex flex-wrap justify-center gap-0">
+      <main className="pt-[200px] px-0 sm:px-6 w-full flex justify-center items-center overflow-x-auto scroll-snap-x">
+        <div className="flex flex-nowrap justify-center items-center gap-0 max-w-screen-xl">
           {teamMembers.map((member, idx) => (
             <TeamCard key={idx} member={member} />
           ))}
