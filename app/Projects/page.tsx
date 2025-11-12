@@ -44,30 +44,30 @@ export default function ProjectsPage() {
       <div className="relative z-10 bg-[#1a1a1a]/95">
         <Navbar />
 
-        <main className="container mx-auto px-8 pt-32 pb-16 space-y-24">
+        <main className="container mx-auto px-8 pt-32 pb-16 space-y-16">
           {/* Headline */}
           <section ref={headlineRef} className={`max-w-6xl mx-auto text-center pt-8 pb-4 transition-all duration-1000 ${headlineVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-12'}`}>
             
             <h1
-              className="text-6xl md:text-8xl lg:text-7xl font-luxury font-bold tracking-tight text-[#c9a961] mb-2"
-              style={{
+              className="font-custom text-5xl md:text-7xl lg:text8xl font-bold tracking-tight text-[#c9a961] mb-2 transition-all duration-1000 delay-500 opacity-100 translate-y-0"
+              style={{   
                 textShadow:
-                  "rgba(0, 0, 0, 1) 0px 0px 40px, rgba(0, 0, 0, 1) 0px 6px 20px, rgba(201, 169, 97, 0.6) 0px 0px 120px",
+                  "rgba(0, 0, 0, 1) 0px 0px 40px, rgba(0, 0, 0, 1) 0px 6px 20px, rgba(201, 169, 97, 0.6) 0px 0px 100px",
                 animation: "text-glow 4s ease-in-out infinite",
               }}
             >
-              Strategic High-Growth
+              STRATEGIC HIGH-GROWTH
             </h1>
 
             <h1
-              className="font-custom text-5xl md:text-7xl lg:text-6xl font-luxury font-bold tracking-tight text-[#c9a961] mb-4"
+              className="font-custom text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-[#c9a961] mb-4 transition-all duration-1000 delay-500 opacity-100 translate-y-0"
               style={{
                 textShadow:
-                  "rgba(0, 0, 0, 1) 0px 0px 40px, rgba(0, 0, 0, 1) 0px 6px 20px, rgba(201, 169, 97, 0.6) 0px 0px 120px",
+                  "rgba(0, 0, 0, 1) 0px 0px 0px, rgba(0, 0, 0, 1) 0px 6px 20px, rgba(201, 169, 97, 0.6) 0px 0px 100px",
                 animation: "text-glow 4s ease-in-out infinite",
               }}
             >
-              Investments Anchored by Real Assets
+              INVESTMENTS ANCHORED BY REAL ASSETS
             </h1>
 
             <div className="mx-auto w-[60%] h-[2px] bg-gradient-to-r from-transparent via-[#c9a961] to-transparent blur-md opacity-90" />
@@ -94,11 +94,8 @@ export default function ProjectsPage() {
                 <p className="text-lg text-gray-300 mb-4">
                   Hyperscale Data Center Campus
                 </p>
-                <a
-                  href="/Annexure-A_Project-Cerebrum-Masterplan.pdf"
-                  className="text-[#c9a961] font-semibold hover:underline"
-                >
-                  REVIEW DETAILS →
+                <a className="text-[#c9a961] font-semibold hover:underline">
+                  DETAILS YET TO BE RELEASED →
                 </a>
               </div>
             </div>
@@ -118,11 +115,8 @@ export default function ProjectsPage() {
                 <p className="text-lg text-gray-300 mb-4">
                   Energy Infrastructure, Details yet to be released.
                 </p>
-                <a
-                  href="/Annexure-B_Project-SolarisSEQ-Overview.pdf"
-                  className="text-[#c9a961] font-semibold hover:underline"
-                >
-                  REVIEW DETAILS →
+                <a className="text-[#c9a961] font-semibold hover:underline">
+                  DETAILS YET TO BE RELEASED →
                 </a>
               </div>
             </div>
@@ -135,7 +129,6 @@ export default function ProjectsPage() {
             </h1>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {/* Homemakers Mega Centre Penrith */}
               <ProjectCard
                 image="/Homemaker-Centre.jpg"
                 title="Homemakers Mega Centre Penrith"
@@ -143,7 +136,6 @@ export default function ProjectsPage() {
                 value="$65.5m"
               />
 
-              {/* Kemblawarra Business Park */}
               <ProjectCard
                 image="/Kemblawarra Business.webp"
                 title="Kemblawarra Business Park"
@@ -151,7 +143,6 @@ export default function ProjectsPage() {
                 value="$20m"
               />
 
-              {/* King Street Office Complex */}
               <ProjectCard
                 image="/King Street.jpeg"
                 title="King Street Office Complex"
@@ -159,7 +150,6 @@ export default function ProjectsPage() {
                 value="$13.2m"
               />
 
-              {/* Unanderra Industrial Land Subdivision */}
               <ProjectCard
                 image="/Unanderra Industrial.jpg"
                 title="Unanderra Industrial Land Subdivision"
@@ -167,9 +157,8 @@ export default function ProjectsPage() {
                 value="$11.8m"
               />
 
-              {/* Mary’s Veil Estate Dubbo Stage 1 */}
               <ProjectCard
-                image="/Mary’s Veil.jpg"
+                image="/Mary’s Veil.png"
                 title="Mary’s Veil Estate Dubbo Stage 1"
                 description="Design, development and construction of a new residential estate comprising 33 residential lots with an average lot size of 600m² located in Dubbo NSW."
                 value="$5.8m"

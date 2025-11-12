@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Navbar from "../components/Navbar";
 
 interface TeamMember {
@@ -32,7 +32,7 @@ const teamMembers: TeamMember[] = [
   },
   {
     name: "Melissa Nedelkovska",
-    image: "/Dog.jpg",
+    image: "/Melissa.jpg",
     role: "Board Member (Pending)",
     bio: "May or may not be involved — confirmation pending.",
     positions: [],
@@ -58,12 +58,13 @@ function TeamCard({ member }: { member: TeamMember }) {
 
   return (
     <div
-      className="relative group w-full sm:w-[16vw] h-[75vh] overflow-hidden cursor-pointer transition-all duration-300 flex items-center justify-center"
+      className="relative group w-full md:w-[300px] h-screen md:h-[600px] lg:h-[700px] flex-shrink-0 overflow-hidden cursor-pointer transition-all duration-300 flex items-center justify-center snap-start"
       onClick={() => setExpanded(!expanded)}
     >
       <img
         src={member.image}
         alt={member.name}
+        loading="lazy"
         className="absolute inset-0 w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110 grayscale group-hover:grayscale-0"
       />
       <button className="absolute inset-x-0 bottom-6 mx-auto bg-[#c9a961] text-black text-sm font-semibold px-5 py-2 rounded-full opacity-90 group-hover:opacity-100 transition z-20 w-fit">
@@ -96,37 +97,83 @@ function TeamCard({ member }: { member: TeamMember }) {
 }
 
 export default function TeamPage() {
+  const [isLoadingComplete, setIsLoadingComplete] = useState(false);
+  const [headerVisible, setHeaderVisible] = useState(false);
+  const [cardsVisible, setCardsVisible] = useState(false);
+  
+  const headerRef = useRef<HTMLElement>(null);
+  const cardsRef = useRef<HTMLElement>(null);
+
+  // Set loading complete after 800ms to match LoadingScreen
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoadingComplete(true);
+    }, 800);
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Intersection Observer for fade-down animations
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && isLoadingComplete) {
+            if (entry.target === headerRef.current) setHeaderVisible(true);
+            if (entry.target === cardsRef.current) setCardsVisible(true);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    if (headerRef.current) observer.observe(headerRef.current);
+    if (cardsRef.current) observer.observe(cardsRef.current);
+
+    return () => observer.disconnect();
+  }, [isLoadingComplete]);
+
   return (
-    <div className="relative min-h-screen bg-[#1a1a1a] overflow-hidden">
+    <div className="relative min-h-screen">
       {/* Golden Grid Background */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#c9a961_1px,transparent_1px),linear-gradient(to_bottom,#c9a961_1px,transparent_1px)] bg-[size:4rem_4rem] z-0" />
       
       {/* Content overlay with dark background to dim grid */}
-      <div className="relative z-10 bg-[#1a1a1a]/95">
-      <Navbar />
-      <section className="absolute top-0 left-0 w-full pt-[100px] pb-4 text-center z-40">
-        <h1
-          className="text-6xl md:text-8xl lg:text-6xl font-luxury font-bold tracking-tight text-[#c9a961] mb-2 transition-all duration-1000 delay-500 opacity-100 translate-y-0"
-          style={{
-            textShadow:
-              "rgba(0, 0, 0, 1) 0px 0px 40px, rgba(0, 0, 0, 1) 0px 6px 20px, rgba(201, 169, 97, 0.6) 0px 0px 120px",
-            animation: "text-glow 4s ease-in-out infinite",
-          }}
-        >
-          Our Team
-        </h1>
+      <div className="relative z-10 bg-[#1a1a1a]/95 min-h-screen">
+        <Navbar />
+        
+        {/* Header Section */}
+        <section ref={headerRef} className={`pt-[100px] pb-8 text-center transition-all duration-1000 ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-12'}`}>
+          <h1
+            className=" font-custom text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-[#c9a961] mb-2"
+            style={{
+              textShadow:
+                "rgba(0, 0, 0, 1) 0px 0px 40px, rgba(0, 0, 0, 1) 0px 6px 20px, rgba(201, 169, 97, 0.6) 0px 0px 120px",
+              animation: "text-glow 4s ease-in-out infinite",
+            }}
+          >
+            OUR TEAM
+          </h1>
+          <div className="mx-auto w-[50%] h-[2px] bg-gradient-to-r from-transparent via-[#c9a961] to-transparent blur-md opacity-90" />
+        </section>
 
-        {/* Linha de luz abaixo do título */}
-        <div className="mx-auto w-[50%] h-[2px] bg-gradient-to-r from-transparent via-[#c9a961] to-transparent blur-md opacity-90" />
-      </section>
+        {/* Team Cards Container */}
+        <main ref={cardsRef} className={`w-full transition-all duration-1000 delay-200 ${cardsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-12'}`}>
+          {/* Mobile: Vertical Scroll */}
+          <div className="md:hidden w-full h-screen overflow-y-scroll snap-y snap-mandatory">
+            {teamMembers.map((member, idx) => (
+              <TeamCard key={idx} member={member} />
+            ))}
+          </div>
 
-      <main className="pt-[200px] px-6 flex justify-center items-start w-full overflow-hidden">
-        <div className="flex flex-wrap justify-center gap-0">
-          {teamMembers.map((member, idx) => (
-            <TeamCard key={idx} member={member} />
-          ))}
-        </div>
-      </main>
+          {/* Desktop: Horizontal Scroll */}
+          <div className="hidden md:flex justify-center items-center overflow-x-auto snap-x snap-mandatory px-6 pb-16">
+            <div className="flex flex-nowrap justify-center items-center gap-0 max-w-screen-xl">
+              {teamMembers.map((member, idx) => (
+                <TeamCard key={idx} member={member} />
+              ))}
+            </div>
+          </div>
+        </main>
       </div>
     </div>
   );
