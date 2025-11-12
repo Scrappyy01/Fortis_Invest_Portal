@@ -298,17 +298,17 @@ export default function Home() {
         <div className="absolute inset-0 bg-black/60" />
         {/* Removed grid overlay for a cleaner look */}
         <div className="text-center text-white z-10 px-8 max-w-5xl">
-          <h1 className="text-4xl font-custom sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-luxury font-bold mb-4 md:mb-6 tracking-tight leading-tight" style={{
+          <h1 className="text-4xl font-custom sm:text-5xl md:text-6xl lg:text-7xl xl:text-9xl font-luxury font-bold mb-4 md:mb-6 tracking-tight leading-tight" style={{
             textShadow: '0 0 30px rgba(0,0,0,0.8), 0 4px 15px rgba(0,0,0,0.9)'
           }}>
             <span style={{ color: '#c9a961' }}>INNOVATING</span> FOR<br />TOMORROW
           </h1>
-          <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light mb-3 md:mb-4 text-white" style={{
+          <p className="text-xl sm:text-2xl md:text-3xl lg:text-5xl font-light mb-3 md:mb-4 text-white" style={{
             textShadow: '0 0 20px rgba(0,0,0,0.8), 0 2px 10px rgba(0,0,0,0.9)'
           }}>
             Engineering the Future of Capital.
           </p>
-          <p className="text-base sm:text-lg md:text-xl text-[#c9a961] font-light tracking-wide" style={{
+          <p className="text-base sm:text-lg md:text-3xl text-[#c9a961] font-light tracking-wide" style={{
             textShadow: '0 0 15px rgba(0,0,0,0.8), 0 2px 8px rgba(0,0,0,0.9)'
           }}>
             Innovation that shapes tomorrow's world.
