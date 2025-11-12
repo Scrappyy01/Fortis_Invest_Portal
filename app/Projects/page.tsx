@@ -60,7 +60,7 @@ export default function ProjectsPage() {
             </h1>
 
             <h1
-              className="text-5xl md:text-7xl lg:text-6xl font-luxury font-bold tracking-tight text-[#c9a961] mb-4"
+              className="font-custom text-5xl md:text-7xl lg:text-6xl font-luxury font-bold tracking-tight text-[#c9a961] mb-4"
               style={{
                 textShadow:
                   "rgba(0, 0, 0, 1) 0px 0px 40px, rgba(0, 0, 0, 1) 0px 6px 20px, rgba(201, 169, 97, 0.6) 0px 0px 120px",

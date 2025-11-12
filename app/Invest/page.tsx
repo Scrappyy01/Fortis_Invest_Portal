@@ -92,8 +92,8 @@ export default function InvestPage() {
       <main className="container mx-auto px-8 pt-32 pb-16">
         {/* Hero Section */}
         <div ref={heroRef} className={`max-w-6xl mx-auto text-center mb-20 transition-all duration-1000 ${heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-12'}`}>
-          <h1 className="text-6xl md:text-7xl font-luxury font-bold text-white mb-6 tracking-tight">
-            Investor Centre
+          <h1 className="font-custom text-6xl md:text-7xl font-luxury font-bold text-white mb-6 tracking-tight">
+            INVESTOR CENTRE
           </h1>
           <p className="text-2xl md:text-3xl text-[#c9a961] font-light">
             Invest with Confidence. Governed, Audited, and Transparent.
@@ -105,8 +105,8 @@ export default function InvestPage() {
           
           {/* Wholesale Investor Eligibility */}
           <div className="bg-[#252525] border border-[#c9a961]/20 p-8 rounded-sm">
-            <h2 className="text-3xl font-luxury font-bold text-[#c9a961] mb-6">
-              Wholesale Investor Eligibility
+            <h2 className="font-custom text-3xl font-bold text-[#c9a961] mb-6">
+              WHOLESALE INVESTOR ELIGIBILITY
             </h2>
             <div className="text-gray-300 space-y-4 leading-relaxed">
               <p>
@@ -134,8 +134,8 @@ export default function InvestPage() {
 
           {/* Custodian & Trustee */}
           <div className="bg-[#252525] border border-[#c9a961]/20 p-8 rounded-sm">
-            <h2 className="text-3xl font-luxury font-bold text-[#c9a961] mb-6">
-              Custodian & Trustee
+            <h2 className="font-custom text-4xl font-luxury font-bold text-[#c9a961] mb-6">
+              CUSTODIAN & TRUSTEE
             </h2>
             <div className="text-gray-300 space-y-4 leading-relaxed">
               <p className="text-xl font-semibold text-white">Quay Services</p>
@@ -192,8 +192,8 @@ export default function InvestPage() {
         {/* Contact for Investor Relations */}
         <div ref={contactRef} className={`max-w-4xl mx-auto mb-20 transition-all duration-1000 delay-400 ${contactVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-12'}`}>
           <div className="bg-[#252525] border border-[#c9a961]/20 p-10 rounded-sm">
-            <h2 className="text-4xl font-luxury font-bold text-[#c9a961] mb-3 text-center">
-              Contact Investor Relations
+            <h2 className="font-custom text-5xl font-luxury font-bold text-[#c9a961] mb-3 text-center">
+              CONTACT INVESTOR RELATIONS
             </h2>
             <p className="text-center text-gray-400 mb-8">
               Have questions? Our investor relations team is here to help.
@@ -273,8 +273,8 @@ export default function InvestPage() {
         {/* Apply for Investor Access CTA */}
         <div ref={ctaRef} className={`max-w-4xl mx-auto text-center transition-all duration-1000 delay-500 ${ctaVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-12'}`}>
           <div className="bg-[#252525] border-2 border-[#c9a961]/40 p-12 rounded-sm">
-            <h2 className="text-4xl md:text-5xl font-luxury font-bold text-white mb-4">
-              Ready to Begin?
+            <h2 className="font-custom text-4xl md:text-6xl font-luxury font-bold text-white mb-4">
+              READY TO BEGIN?
             </h2>
             <p className="text-xl text-gray-300 mb-8">
               Submit your application to join sophisticated investors in the Fortis Fund.
