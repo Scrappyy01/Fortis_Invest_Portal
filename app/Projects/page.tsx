@@ -47,6 +47,7 @@ export default function ProjectsPage() {
         <main className="container mx-auto px-8 pt-32 pb-16 space-y-24">
           {/* Headline */}
           <section ref={headlineRef} className={`max-w-6xl mx-auto text-center pt-8 pb-4 transition-all duration-1000 ${headlineVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-12'}`}>
+            
             <h1
               className="text-6xl md:text-8xl lg:text-7xl font-luxury font-bold tracking-tight text-[#c9a961] mb-2"
               style={{

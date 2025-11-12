@@ -200,7 +200,7 @@ export default function Home() {
       <nav className="fixed top-0 left-0 right-0 z-50 bg-[#1a1a1a]/95 backdrop-blur-sm border-b border-[#c9a961]/20">
         <div className="container mx-auto px-8 py-4 flex items-center justify-between">
           <div className="flex items-center">
-            <img src="/fortisfundamenta_logo_4.png" alt="Fortis Fundamenta Logo" className="h-12 w-auto" />
+            <img src="/fortisfundamenta_logo_1_NewColor.png" alt="Fortis Fundamenta Logo" className="h-12 w-auto" />
           </div>
           
           {/* Desktop Menu */}
@@ -497,9 +497,9 @@ export default function Home() {
               </div>
             )}
             <img 
-              src="/fortisfundamenta_logo_1.png" 
+              src="/fortisfundamenta_logo_1_NewColor.png" 
               alt="Fortis Fundamenta" 
-              className="h-16 sm:h-20 md:h-24 lg:h-28 w-auto mx-auto relative z-10"
+              className="h-12 sm:h-16 md:h-20 lg:h-24 w-auto mx-auto relative z-10"
               style={{
                 filter: 'drop-shadow(0 0 30px rgba(201, 169, 97, 0.4))',
                 animation: slide4Visible ? 'subtle-pulse 3s ease-in-out infinite' : 'none'

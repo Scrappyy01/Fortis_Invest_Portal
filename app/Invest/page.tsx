@@ -174,7 +174,7 @@ export default function InvestPage() {
                 className="h-20 w-auto mx-auto opacity-90"
               />
             </div>
-            <h2 className="text-4xl md:text-5xl font-luxury font-bold text-[#c9a961] mb-4">
+            <h2 className="font-custom text-4xl md:text-6xl font-luxury font-bold text-[#c9a961] mb-4">
               THE FORTIS FUND
             </h2>
             <p className="text-2xl text-white mb-8 font-light">
@@ -281,7 +281,7 @@ export default function InvestPage() {
             </p>
             <a
               href="/apply"
-              className="inline-block bg-[#c9a961] hover:bg-[#d4b876] text-[#1a1a1a] font-semibold text-lg px-16 py-5 rounded-sm transition-all duration-300 tracking-wide shadow-2xl hover:shadow-[#c9a961]/60 hover:scale-105"
+              className="font-custom inline-block bg-[#c9a961] hover:bg-[#d4b876] text-[#1a1a1a] font-semibold text-lg px-16 py-5 rounded-sm transition-all duration-300 tracking-wide shadow-2xl hover:shadow-[#c9a961]/60 hover:scale-105"
             >
               APPLY FOR INVESTOR ACCESS
             </a>
