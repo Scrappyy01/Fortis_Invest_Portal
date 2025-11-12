@@ -373,3 +373,14 @@ body {
   opacity: 0.9;
   animation: twinkle 4s ease-in-out infinite;
 }
+
+@font-face {
+  font-family: 'UnicaOne-Regular';
+  src: url('/UnicaOne-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.font-custom {
+  font-family: 'UnicaOne-Regular', sans-serif;
+}

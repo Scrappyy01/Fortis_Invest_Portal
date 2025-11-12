@@ -298,10 +298,10 @@ export default function Home() {
         <div className="absolute inset-0 bg-black/60" />
         {/* Removed grid overlay for a cleaner look */}
         <div className="text-center text-white z-10 px-8 max-w-5xl">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-luxury font-bold mb-4 md:mb-6 tracking-tight leading-tight" style={{
+          <h1 className="text-4xl font-custom sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-luxury font-bold mb-4 md:mb-6 tracking-tight leading-tight" style={{
             textShadow: '0 0 30px rgba(0,0,0,0.8), 0 4px 15px rgba(0,0,0,0.9)'
           }}>
-            INNOVATING FOR<br />TOMORROW
+            <span style={{ color: '#c9a961' }}>INNOVATING</span> FOR<br />TOMORROW
           </h1>
           <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light mb-3 md:mb-4 text-white" style={{
             textShadow: '0 0 20px rgba(0,0,0,0.8), 0 2px 10px rgba(0,0,0,0.9)'
@@ -345,10 +345,11 @@ export default function Home() {
         
         {/* Content */}
         <div className="text-center text-white z-10 px-8 max-w-5xl relative">
-          <h2 className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-luxury font-bold mb-4 md:mb-6 tracking-tight transition-all duration-1000 ${slide2Visible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-12'} delay-0`} style={{
+          <h2 className={`text-3xl font-custom sm:text-4xl md:text-5xl lg:text-6xl xl:text-8xl font-luxu
+          ry font-bold mb-4 md:mb-6 tracking-tight transition-all duration-1000 ${slide2Visible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-12'} delay-0`} style={{
             textShadow: '0 0 30px rgba(0, 0, 0, 0.8), 0 4px 15px rgba(0, 0, 0, 0.9)'
           }}>
-            RESPECTING OUR PAST
+            <span style={{ color: '#c9a961' }}>RESPECTING</span> OUR PAST
           </h2>
           <p className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light mb-3 md:mb-4 transition-all duration-1000 ${slide2Visible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-12'} delay-200`} style={{
             textShadow: '0 0 20px rgba(0, 0, 0, 0.8), 0 2px 10px rgba(0, 0, 0, 0.9)'
@@ -383,7 +384,7 @@ export default function Home() {
           <div className="absolute inset-0 bg-[linear-gradient(45deg,#c9a961_1px,transparent_1px),linear-gradient(-45deg,#c9a961_1px,transparent_1px)] bg-[size:3rem_3rem]"></div>
         </div>
         <div className={`text-center text-white z-10 px-8 max-w-5xl transition-all duration-1000 delay-300 ${slide3Visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-luxury font-bold mb-4 md:mb-6 tracking-tight" style={{
+          <h2 className="font-custom text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-8xl font-luxury font-bold mb-4 md:mb-6 tracking-tight" style={{
             textShadow: '0 0 30px rgba(0,0,0,0.8), 0 4px 15px rgba(0,0,0,0.9)'
           }}>
             DELIVERING THE FUTURE<br />OF POSSIBILITY
@@ -507,7 +508,7 @@ export default function Home() {
           </div>
           
           {/* Heading with letter reveal */}
-          <h2 className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-luxury font-bold mb-4 md:mb-6 tracking-tight text-[#c9a961] transition-all duration-1000 delay-500 ${slide4Visible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-8'}`} 
+          <h2 className={`font-custom text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-8xl font-luxury font-bold mb-4 md:mb-6 tracking-tight text-[#c9a961] transition-all duration-1000 delay-500 ${slide4Visible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-8'}`} 
             style={{
               textShadow: '0 0 30px rgba(0,0,0,0.8), 0 4px 15px rgba(0,0,0,0.9), 0 0 60px rgba(201, 169, 97, 0.3)',
               animation: slide4Visible ? 'text-glow 4s ease-in-out infinite' : 'none'
@@ -580,10 +581,10 @@ export default function Home() {
         />
         
         <div className="text-center text-white z-10 px-4 sm:px-6 md:px-8 max-w-5xl relative">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-luxury font-bold mb-4 md:mb-6 tracking-tight" style={{
+          <h2 className="font-custom text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-8xl font-luxury font-bold mb-4 md:mb-6 tracking-tight" style={{
             textShadow: '0 0 30px rgba(0,0,0,0.8), 0 4px 15px rgba(0,0,0,0.9)'
           }}>
-            INVEST IN EXCELLENCE
+            INVEST IN <span style={{ color: '#c9a961' }}>EXCELLENCE</span> 
           </h2>
           <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light mb-3 md:mb-4" style={{
             textShadow: '0 0 20px rgba(0,0,0,0.8), 0 2px 10px rgba(0,0,0,0.9)'
@@ -596,7 +597,7 @@ export default function Home() {
             Partner with Fortis Fundamenta and invest in the foundations of the future.
           </p>
           <button className="bg-[#c9a961] hover:bg-[#d4b876] text-[#1a1a1a] font-semibold text-sm sm:text-base md:text-lg px-6 sm:px-8 md:px-12 py-3 md:py-4 rounded-sm transition-all duration-300 tracking-wide shadow-2xl hover:shadow-[#c9a961]/60 hover:scale-105 w-full sm:w-auto max-w-sm">
-            APPLY FOR INVESTOR ACCESS
+            <a href="/Invest">APPLY FOR INVESTOR ACCESS</a>
           </button>
         </div>
       </section>
