@@ -626,7 +626,7 @@ export default function Home() {
         />
         
         <div className="text-center text-white z-10 px-4 sm:px-6 md:px-8 max-w-5xl relative">
-          <h2 className="font-custom text-7xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-8xl font-luxury font-bold mb-4 md:mb-6 tracking-tight" style={{
+          <h2 className="font-custom text-7xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-9xl font-luxury font-bold mb-4 md:mb-6 tracking-tight" style={{
             textShadow: '0 0 30px rgba(0,0,0,0.8), 0 4px 15px rgba(0,0,0,0.9)'
           }}>
             INVEST IN <span style={{ color: '#c9a961' }}>EXCELLENCE</span> 
