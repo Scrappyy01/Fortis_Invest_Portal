@@ -13,7 +13,7 @@ interface TeamMember {
 const teamMembers: TeamMember[] = [
   {
     name: "Anthony Kosseris",
-    image: "/Anthony__.png",
+    image: "/Anthony.JPG",
     role: "Director and Investment Manager",
     bio: "Anthony is a visionary entrepreneur and innovator with expertise in engineering, law, and property. He brings over 30 years of experience building and delivering successful ventures across technology, freight, logistics, manufacturing, and property.",
     positions: [
@@ -33,13 +33,16 @@ const teamMembers: TeamMember[] = [
   {
     name: "Melissa Nedelkovska",
     image: "/Melissa.jpg",
-    role: "Board Member (Pending)",
-    bio: "May or may not be involved — confirmation pending.",
-    positions: [],
+    role: "Director",
+    bio: "Melissa has a Masters Degree in Accounting and a Bachelor of Business Management & Marketing. She brings over 25 years of experience in the Residential and Commercial Property Development and Management space",
+    positions: [
+      "Fortis Fundamenta Pty Ltd – Director",
+      "CFO of All Properties Group.",
+    ],
   },
   {
     name: "Matthew Hunt",
-    image: "/Matt.JPG",
+    image: "/Matt.png",
     role: "Business Development Manager",
     bio: "Over 30 years of experience as a prototype developer and business development manager. Held senior roles in multiple international companies.",
     positions: [],
@@ -72,7 +75,7 @@ function TeamCard({ member }: { member: TeamMember }) {
       </button>
 
       {expanded && (
-        <div className="absolute inset-0 bg-[#1a1a1a] bg-opacity-95 p-6 overflow-y-auto z-30 flex flex-col justify-center text-left">
+        <div className="absolute inset-0 bg-[#1a1a1a] bg-opacity-95 p-6 overflow-y-auto z-30 flex flex-col items-start justify-center">
           <h3 className="text-2xl font-bold text-[#c9a961] mb-3">
             {member.name}
           </h3>
@@ -100,11 +103,10 @@ export default function TeamPage() {
   const [isLoadingComplete, setIsLoadingComplete] = useState(false);
   const [headerVisible, setHeaderVisible] = useState(false);
   const [cardsVisible, setCardsVisible] = useState(false);
-  
+
   const headerRef = useRef<HTMLElement>(null);
   const cardsRef = useRef<HTMLElement>(null);
 
-  // Set loading complete after 800ms to match LoadingScreen
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoadingComplete(true);
@@ -112,7 +114,6 @@ export default function TeamPage() {
     return () => clearTimeout(timer);
   }, []);
 
-  // Intersection Observer for fade-down animations
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -134,15 +135,18 @@ export default function TeamPage() {
 
   return (
     <div className="relative min-h-screen">
-      {/* Golden Grid Background */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#c9a961_1px,transparent_1px),linear-gradient(to_bottom,#c9a961_1px,transparent_1px)] bg-[size:4rem_4rem] z-0" />
-      
-      {/* Content overlay with dark background to dim grid */}
       <div className="relative z-10 bg-[#1a1a1a]/95 min-h-screen">
         <Navbar />
-        
-        {/* Header Section */}
-        <section ref={headerRef} className={`pt-[100px] pb-8 text-center transition-all duration-1000 ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-12'}`}>
+
+        <section
+          ref={headerRef}
+          className={`pt-[100px] pb-8 text-center transition-all duration-1000 ${
+            headerVisible
+              ? "opacity-100 translate-y-0"
+              : "opacity-0 -translate-y-12"
+          }`}
+        >
           <h1
             className=" font-custom text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-[#c9a961] mb-2"
             style={{
@@ -156,16 +160,20 @@ export default function TeamPage() {
           <div className="mx-auto w-[50%] h-[2px] bg-gradient-to-r from-transparent via-[#c9a961] to-transparent blur-md opacity-90" />
         </section>
 
-        {/* Team Cards Container */}
-        <main ref={cardsRef} className={`w-full transition-all duration-1000 delay-200 ${cardsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-12'}`}>
-          {/* Mobile: Vertical Scroll */}
+        <main
+          ref={cardsRef}
+          className={`w-full transition-all duration-1000 delay-200 ${
+            cardsVisible
+              ? "opacity-100 translate-y-0"
+              : "opacity-0 -translate-y-12"
+          }`}
+        >
           <div className="md:hidden w-full h-screen overflow-y-scroll snap-y snap-mandatory">
             {teamMembers.map((member, idx) => (
               <TeamCard key={idx} member={member} />
             ))}
           </div>
 
-          {/* Desktop: Horizontal Scroll */}
           <div className="hidden md:flex justify-center items-center overflow-x-auto snap-x snap-mandatory px-6 pb-16">
             <div className="flex flex-nowrap justify-center items-center gap-0 max-w-screen-xl">
               {teamMembers.map((member, idx) => (
