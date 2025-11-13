@@ -641,7 +641,7 @@ export default function Home() {
           }}>
             Partner with Fortis Fundamenta and invest in the foundations of the future.
           </p>
-          <button className="bg-[#c9a961] hover:bg-[#d4b876] text-[#1a1a1a] font-custom font-semibold text-base sm:text-lg md:text-lg px-6 sm:px-8 md:px-12 py-3 md:py-4 rounded-sm transition-all duration-300 tracking-wide shadow-2xl hover:shadow-[#c9a961]/60 hover:scale-105 w-full sm:w-auto max-w-sm">
+          <button className="bg-[#c9a961] hover:bg-[#d4b876] text-[#1a1a1a] font-custom font-semibold text-lg sm:text-xl md:text-2xl px-8 sm:px-12 md:px-16 py-4 md:py-6 rounded-md transition-all duration-300 tracking-wide shadow-2xl hover:shadow-[#c9a961]/60 hover:scale-105 w-full sm:w-auto max-w-md">
             <a href="/Invest">APPLY FOR INVESTOR ACCESS</a>
           </button>
         </div>

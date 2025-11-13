@@ -56,7 +56,7 @@ export default function ProjectsPage() {
                 animation: "text-glow 4s ease-in-out infinite",
               }}
             >
-              STRATEGIC HIGH-GROWTH
+              STRATEGIC HIGH-GROWTH INVESTMENTS 
             </h1>
 
             <h1
@@ -67,7 +67,7 @@ export default function ProjectsPage() {
                 animation: "text-glow 4s ease-in-out infinite",
               }}
             >
-              INVESTMENTS ANCHORED BY REAL ASSETS
+              ANCHORED BY REAL ASSETS
             </h1>
 
             <div className="mx-auto w-[60%] h-[2px] bg-gradient-to-r from-transparent via-[#c9a961] to-transparent blur-md opacity-90" />
