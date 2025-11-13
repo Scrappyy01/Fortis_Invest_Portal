@@ -158,7 +158,7 @@ export default function ProjectsPage() {
               />
 
               <ProjectCard
-                image="/Mary’s Veil.png"
+                image="/Mary's Veil Estate.jpg"
                 title="Mary’s Veil Estate Dubbo Stage 1"
                 description="Design, development and construction of a new residential estate comprising 33 residential lots with an average lot size of 600m² located in Dubbo NSW."
                 value="$5.8m"

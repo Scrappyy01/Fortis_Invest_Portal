@@ -396,12 +396,12 @@ export default function Home() {
           }}>
             <span style={{ color: '#c9a961' }}>RESPECTING</span> OUR PAST
           </h2>
-          <p className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light mb-3 md:mb-4 transition-all duration-1000 ${slide2Visible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-12'} delay-200`} style={{
+          <p className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light mb-3 md:mb-4 transition-all duration-1000 ${slide2Visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'} delay-200`} style={{
             textShadow: '0 0 20px rgba(0, 0, 0, 0.8), 0 2px 10px rgba(0, 0, 0, 0.9)'
           }}>
             Built on Integrity. Strengthened by Experience.
           </p>
-          <p className={`text-base sm:text-lg md:text-xl text-gray-200 font-light max-w-3xl mx-auto leading-relaxed transition-all duration-1000 ${slide2Visible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-12'} delay-400`} style={{
+          <p className={`text-base sm:text-lg md:text-xl text-gray-200 font-light max-w-3xl mx-auto leading-relaxed transition-all duration-1000 ${slide2Visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'} delay-400`} style={{
             textShadow: '0 0 15px rgba(0, 0, 0, 0.8), 0 2px 8px rgba(0, 0, 0, 0.9)'
           }}>
             From engineering and technology to capital and development — a legacy of execution.
