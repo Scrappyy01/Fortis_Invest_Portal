@@ -318,7 +318,7 @@ export default function Home() {
         <div className="absolute inset-0 bg-black/60" />
         {/* Removed grid overlay for a cleaner look */}
         <div className="text-center text-white z-10 px-8 max-w-5xl">
-          <h1 className={`opacity-0 text-4xl font-custom sm:text-5xl md:text-6xl lg:text-7xl xl:text-9xl font-luxury font-bold mb-4 md:mb-6 tracking-tight leading-tight ${slide1Visible && isLoadingComplete ? 'slide1-heading' : ''}`} style={{
+          <h1 className={`opacity-0 text-6xl font-custom sm:text-5xl md:text-6xl lg:text-7xl xl:text-9xl font-luxury font-bold mb-4 md:mb-6 tracking-tight leading-tight ${slide1Visible && isLoadingComplete ? 'slide1-heading' : ''}`} style={{
             textShadow: '0 0 30px rgba(0,0,0,0.8), 0 4px 15px rgba(0,0,0,0.9)'
           }}>
             <span style={{ color: '#c9a961' }}>INNOVATING</span> FOR<br />TOMORROW
@@ -333,6 +333,31 @@ export default function Home() {
           }}>
             Innovation that shapes tomorrow's world.
           </p>
+          
+          {/* Discover More Arrow */}
+          <div className={`mt-8 md:mt-12 flex flex-col items-center gap-2 cursor-pointer ${slide1Visible && isLoadingComplete ? 'opacity-100' : 'opacity-0'} transition-opacity duration-1000 delay-700 hover:scale-110 transition-transform duration-300`} onClick={() => {
+            const slide2 = document.getElementById('slide2');
+            if (slide2) {
+              slide2.scrollIntoView({ behavior: 'smooth' });
+            }
+          }}>
+            <p className="text-xs sm:text-sm md:text-base text-[#c9a961] font-light tracking-widest uppercase">
+              Discover More
+            </p>
+            <svg 
+              className="animate-bounce-arrow w-5 h-5 md:w-6 md:h-6 text-[#c9a961]" 
+              fill="none" 
+              stroke="currentColor" 
+              viewBox="0 0 24 24"
+            >
+              <path 
+                strokeLinecap="round" 
+                strokeLinejoin="round" 
+                strokeWidth={1.5} 
+                d="M19 14l-7 7m0 0l-7-7m7 7V3" 
+              />
+            </svg>
+          </div>
         </div>
       </section>
 
@@ -365,7 +390,7 @@ export default function Home() {
         
         {/* Content */}
         <div className="text-center text-white z-10 px-8 max-w-5xl relative">
-          <h2 className={`text-3xl font-custom sm:text-4xl md:text-5xl lg:text-6xl xl:text-8xl font-luxu
+          <h2 className={`text-6xl font-custom sm:text-4xl md:text-5xl lg:text-6xl xl:text-8xl font-luxu
           ry font-bold mb-4 md:mb-6 tracking-tight transition-all duration-1000 ${slide2Visible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-12'} delay-0`} style={{
             textShadow: '0 0 30px rgba(0, 0, 0, 0.8), 0 4px 15px rgba(0, 0, 0, 0.9)'
           }}>
@@ -404,17 +429,17 @@ export default function Home() {
           <div className="absolute inset-0 bg-[linear-gradient(45deg,#c9a961_1px,transparent_1px),linear-gradient(-45deg,#c9a961_1px,transparent_1px)] bg-[size:3rem_3rem]"></div>
         </div>
         <div className={`text-center text-white z-10 px-8 max-w-5xl transition-all duration-1000 delay-300 ${slide3Visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
-          <h2 className="font-custom text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-8xl font-luxury font-bold mb-4 md:mb-6 tracking-tight" style={{
+          <h2 className="font-custom text-6xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-8xl font-luxury font-bold mb-4 md:mb-6 tracking-tight" style={{
             textShadow: '0 0 30px rgba(0,0,0,0.8), 0 4px 15px rgba(0,0,0,0.9)'
           }}>
             DELIVERING THE FUTURE<br />OF POSSIBILITY
           </h2>
-          <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light mb-3 md:mb-4" style={{
+          <p className="text-2xl sm:text-2xl md:text-3xl lg:text-4xl font-light mb-3 md:mb-4" style={{
             textShadow: '0 0 20px rgba(0,0,0,0.8), 0 2px 10px rgba(0,0,0,0.9)'
           }}>
             Where Vision Becomes Reality.
           </p>
-          <p className="text-base sm:text-lg md:text-xl text-[#c9a961] font-light tracking-wide" style={{
+          <p className="text-2xl sm:text-lg md:text-xl text-[#c9a961] font-light tracking-wide" style={{
             textShadow: '0 0 15px rgba(0,0,0,0.8), 0 2px 8px rgba(0,0,0,0.9)'
           }}>
             Real-asset investments powering tomorrow's economy.
@@ -528,7 +553,7 @@ export default function Home() {
           </div>
           
           {/* Heading with letter reveal */}
-          <h2 className={`font-custom text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-8xl font-luxury font-bold mb-4 md:mb-6 tracking-tight text-[#c9a961] transition-all duration-1000 delay-500 ${slide4Visible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-8'}`} 
+          <h2 className={`font-custom text-6xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-8xl font-luxury font-bold mb-4 md:mb-6 tracking-tight text-[#c9a961] transition-all duration-1000 delay-500 ${slide4Visible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-8'}`} 
             style={{
               textShadow: '0 0 30px rgba(0,0,0,0.8), 0 4px 15px rgba(0,0,0,0.9), 0 0 60px rgba(201, 169, 97, 0.3)',
               animation: slide4Visible ? 'text-glow 4s ease-in-out infinite' : 'none'
@@ -572,7 +597,7 @@ export default function Home() {
           <div 
             className="absolute inset-0 bg-cover bg-center bg-no-repeat"
             style={{
-              backgroundImage: 'url(/Mobile_Gold_Background4.png)',
+              backgroundImage: 'url(/Mobile_Gold_Background.png)',
             }}
           >
             <div className="absolute inset-0" style={{background: 'rgba(10, 10, 20, 0.45)'}} />
@@ -601,22 +626,22 @@ export default function Home() {
         />
         
         <div className="text-center text-white z-10 px-4 sm:px-6 md:px-8 max-w-5xl relative">
-          <h2 className="font-custom text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-8xl font-luxury font-bold mb-4 md:mb-6 tracking-tight" style={{
+          <h2 className="font-custom text-7xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-8xl font-luxury font-bold mb-4 md:mb-6 tracking-tight" style={{
             textShadow: '0 0 30px rgba(0,0,0,0.8), 0 4px 15px rgba(0,0,0,0.9)'
           }}>
             INVEST IN <span style={{ color: '#c9a961' }}>EXCELLENCE</span> 
           </h2>
-          <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light mb-3 md:mb-4" style={{
+          <p className="text-2xl sm:text-2xl md:text-3xl lg:text-4xl font-light mb-3 md:mb-4" style={{
             textShadow: '0 0 20px rgba(0,0,0,0.8), 0 2px 10px rgba(0,0,0,0.9)'
           }}>
             A Managed Fund for Sophisticated Investors.
           </p>
-          <p className="text-base sm:text-lg md:text-xl text-gray-200 font-light mb-8 md:mb-12 max-w-3xl mx-auto leading-relaxed px-2" style={{
+          <p className="text-1xl sm:text-lg md:text-xl text-gray-200 font-light mb-8 md:mb-12 max-w-3xl mx-auto leading-relaxed px-2" style={{
             textShadow: '0 0 15px rgba(0,0,0,0.8), 0 2px 8px rgba(0,0,0,0.9)'
           }}>
             Partner with Fortis Fundamenta and invest in the foundations of the future.
           </p>
-          <button className="bg-[#c9a961] hover:bg-[#d4b876] text-[#1a1a1a] font-semibold text-sm sm:text-base md:text-lg px-6 sm:px-8 md:px-12 py-3 md:py-4 rounded-sm transition-all duration-300 tracking-wide shadow-2xl hover:shadow-[#c9a961]/60 hover:scale-105 w-full sm:w-auto max-w-sm">
+          <button className="bg-[#c9a961] hover:bg-[#d4b876] text-[#1a1a1a] font-custom font-semibold text-base sm:text-lg md:text-lg px-6 sm:px-8 md:px-12 py-3 md:py-4 rounded-sm transition-all duration-300 tracking-wide shadow-2xl hover:shadow-[#c9a961]/60 hover:scale-105 w-full sm:w-auto max-w-sm">
             <a href="/Invest">APPLY FOR INVESTOR ACCESS</a>
           </button>
         </div>
