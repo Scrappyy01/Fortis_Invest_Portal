@@ -646,21 +646,6 @@ export default function Home() {
           </button>
         </div>
       </section>
-      <footer className="bg-black text-gray-400 text-sm py-8">
-
-        <div className="border-t border-gray-700 w-full mb-6"></div>
-
-        <div className="container mx-auto text-center space-y-4">
-          <p>© 2025 FortisFundementa Inc.</p>
-
-          <nav className="flex flex-wrap justify-center gap-6">
-            <a href="#" className="hover:text-cyan-400 transition">Transparency & Disclosure</a>
-            <a href="#" className="hover:text-cyan-400 transition">Legal</a>
-            <a href="#" className="hover:text-cyan-400 transition">Phishing and Fraud Awareness</a>
-            <a href="#" className="hover:text-cyan-400 transition">Do Not Sell or Share My Personal Information</a>
-          </nav>
-        </div>
-      </footer>
     </div>
   );
 }
