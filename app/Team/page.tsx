@@ -25,7 +25,7 @@ const teamMembers: TeamMember[] = [
   },
   {
     name: "John Kosseris",
-    image: "/Dog.jpg",
+    image: "/John.png",
     role: "Director",
     bio: "John is an experienced entrepreneur with over 55 years in property development, construction, and freight. He has successfully navigated multiple financial cycles and built enduring businesses.",
     positions: ["Fortis Fundamenta Pty Ltd – Director"],
