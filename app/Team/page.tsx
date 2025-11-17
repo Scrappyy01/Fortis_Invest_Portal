@@ -42,7 +42,7 @@ const teamMembers: TeamMember[] = [
   },
   {
     name: "Matthew Hunt",
-    image: "/Matt.png",
+    image: "/Matt_02.JPG",
     role: "Business Development Manager",
     bio: "Over 30 years of experience as a prototype developer and business development manager. Held senior roles in multiple international companies.",
     positions: [],
